@@ -1,115 +1,63 @@
 
-
-/*
-
-let menu=[
-    'Fideos caseritos',
-    'Fideos espinaca',
-    'Fideos tirabuzon',
-    'Ravioles carne',
-    'Raviolones verdes espinaca y ricota'  
-]
-
-function ourMenu(array) {
-    
-    for( i=0 ; i<=array.length ; i++ ){ 
-    
-        swich(array[i]){       //array[i]==>es el valor de cada elemento   //Swich evalua un valor //El array vale el array
-        case 'Fideos caseritos':
+//Carrito!!
+let carrito = [];
 
 
-            break;
-           
+class Menu {
+    constructor(id, nombre, precio) {
+        this.id=id;
+        this.nombre = nombre;
+        this.precio = precio;
     }
-}
-}
-*/
-            
-let menu=[
-    'Fideos caseritos',
-    'Fideos espinaca',
-    'Fideos tirabuzon',
-    'Ravioles carne',
-    'Raviolones verdes espinaca y ricota' , 
-    'Canelonis de calabaza asada y queso de cabra',
-    'Cuatro quesos',
-    'Boloñesa de la abuela',
-    'Fileto de tomates naturales',
-    'Cheesecake frutos rojos',
-    'Muffin chocolate al 70%',
-    'Panckakes tower'
-]
 
-function ourMenu(array){
-    
-    for( i=0 ; i<=array.length  ; i++ ){
+    getId() {
+        return this.id;
+    }
 
-        switch (array[i]) {
-            //Fideos caseros
-            case 'Fideos caseritos':
-                alert("Fideos caseros:")
-                alert("Precio: "  + array[i]  + "$120" );
-                break;
+    getNombre() {
+        return this.nombre;
+    }
 
-            case 'Fideos espinaca':
-                alert("Precio: " + " " + array[i] +":" + "$150" );
-                break;
+    getTotal(qty) {
+       return  this.precio * qty 
+    }
 
-            case 'Fideos tirabuzon':
-                alert("Precio:" + " " + array[i] +":" + "$180" );
-                break;
-
-            //Pastas rellenas
-            case 'Ravioles carne':
-                alert("Pastas rellenas:")
-                alert("Precio:" + " " + array[i] +":" + "$200" );
-                break;
-
-            case 'Raviolones verdes espinaca y ricota':
-                alert("Precio:" + " " + array[i] +":" + "$190" );
-                break;
-
-            case 'Canelonis de calabaza asada y queso de cabra':
-                alert("Precio:" + " " + array[i] +":" + "$250" );
-                break;
-
-            //Salsas
-            case 'Cuatro quesos':
-                alert("Salsas:")
-                alert("Precio:" + " " + array[i] +":" + "$120" );
-                break;
-    
-            case 'Boloñesa de la abuela':
-                alert("Precio:" + " " + array[i] +":" + "$150" );
-                break;
-    
-            case 'Fileto de tomates naturales':
-                alert("Precio:" + " " + array[i] +":" + "$100" );
-                break;
-
-            //Postres
-            case 'Cheesecake frutos rojos':
-                alert("Nuestros postres:")
-                alert("Precio:" + " " + array[i] +":" + "$250" );
-                break;
-        
-            case 'Muffin chocolate al 70%':
-                alert("Precio:" + " " + array[i] +":" + "$220" );
-                break;
-        
-            case 'Panckakes tower':
-                alert("Precio:" + " " + array[i] +":" + "$280" );
-                break;
-                
-
-                
+    getCompra(qty){
+        return{
+            producto:this,
+            cantidad:qty,
+            monto:this.getTotal(qty)
         }
     }
+
+    addToCart(qty){
+        carrito.push(this.getCompra(qty))
+    }
 }
 
 
+//Creo un objeto
+const producto1 = new Menu (1, 'Caseritos' , 150);
+const producto2 = new Menu (2, 'Espinaca' , 200);
+const producto3 = new Menu (3, 'Tirabuzon', 220);
+const producto4 = new Menu (4, 'Ravioles carne' , 270 );
+const producto5 = new Menu (4, 'Verdes', 250);
+const producto6 = new Menu (5, 'Canelonis', 300);
+const producto7 = new Menu (6, '4 Quesos', 120);
+const producto8 = new Menu (7, 'Boloñesa', 170);
+const producto9 = new Menu (8, 'Fileto', 110 );
 
-alert(ourMenu(menu))
+
+//Aca guardo el total en una variable(pedidoUnoTotal), que me va a devolver datos de la compra.
+//primeroPedido=producto1.getCompra(12)
+//console.log(primeroPedido)
+
+console.log(carrito)
+producto7.addToCart(3)
+console.log(carrito)
+
+
+
 
 
 

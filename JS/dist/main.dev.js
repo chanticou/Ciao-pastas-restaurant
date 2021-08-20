@@ -1,91 +1,72 @@
 "use strict";
 
-/*
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-let menu=[
-    'Fideos caseritos',
-    'Fideos espinaca',
-    'Fideos tirabuzon',
-    'Ravioles carne',
-    'Raviolones verdes espinaca y ricota'  
-]
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function ourMenu(array) {
-    
-    for( i=0 ; i<=array.length ; i++ ){ 
-    
-        swich(array[i]){       //array[i]==>es el valor de cada elemento   //Swich evalua un valor //El array vale el array
-        case 'Fideos caseritos':
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+//Carrito!!
+var carrito = [];
 
-            break;
-           
-    }
-}
-}
-*/
-var menu = ['Fideos caseritos', 'Fideos espinaca', 'Fideos tirabuzon', 'Ravioles carne', 'Raviolones verdes espinaca y ricota', 'Canelonis de calabaza asada y queso de cabra', 'Cuatro quesos', 'Boloñesa de la abuela', 'Fileto de tomates naturales', 'Cheesecake frutos rojos', 'Muffin chocolate al 70%', 'Panckakes tower'];
+var Menu =
+/*#__PURE__*/
+function () {
+  function Menu(id, nombre, precio) {
+    _classCallCheck(this, Menu);
 
-function ourMenu(array) {
-  for (i = 0; i <= array.length; i++) {
-    switch (array[i]) {
-      //Fideos caseros
-      case 'Fideos caseritos':
-        alert("Fideos caseros:");
-        alert("Precio: " + array[i] + "$120");
-        break;
-
-      case 'Fideos espinaca':
-        alert("Precio: " + " " + array[i] + ":" + "$150");
-        break;
-
-      case 'Fideos tirabuzon':
-        alert("Precio:" + " " + array[i] + ":" + "$180");
-        break;
-      //Pastas rellenas
-
-      case 'Ravioles carne':
-        alert("Pastas rellenas:");
-        alert("Precio:" + " " + array[i] + ":" + "$200");
-        break;
-
-      case 'Raviolones verdes espinaca y ricota':
-        alert("Precio:" + " " + array[i] + ":" + "$190");
-        break;
-
-      case 'Canelonis de calabaza asada y queso de cabra':
-        alert("Precio:" + " " + array[i] + ":" + "$250");
-        break;
-      //Salsas
-
-      case 'Cuatro quesos':
-        alert("Salsas:");
-        alert("Precio:" + " " + array[i] + ":" + "$120");
-        break;
-
-      case 'Boloñesa de la abuela':
-        alert("Precio:" + " " + array[i] + ":" + "$150");
-        break;
-
-      case 'Fileto de tomates naturales':
-        alert("Precio:" + " " + array[i] + ":" + "$100");
-        break;
-      //Postres
-
-      case 'Cheesecake frutos rojos':
-        alert("Nuestros postres:");
-        alert("Precio:" + " " + array[i] + ":" + "$250");
-        break;
-
-      case 'Muffin chocolate al 70%':
-        alert("Precio:" + " " + array[i] + ":" + "$220");
-        break;
-
-      case 'Panckakes tower':
-        alert("Precio:" + " " + array[i] + ":" + "$280");
-        break;
-    }
+    this.id = id;
+    this.nombre = nombre;
+    this.precio = precio;
   }
-}
 
-alert(ourMenu(menu));
+  _createClass(Menu, [{
+    key: "getId",
+    value: function getId() {
+      return this.id;
+    }
+  }, {
+    key: "getNombre",
+    value: function getNombre() {
+      return this.nombre;
+    }
+  }, {
+    key: "getTotal",
+    value: function getTotal(qty) {
+      return this.precio * qty;
+    }
+  }, {
+    key: "getCompra",
+    value: function getCompra(qty) {
+      return {
+        producto: this,
+        cantidad: qty,
+        monto: this.getTotal(qty)
+      };
+    }
+  }, {
+    key: "addToCart",
+    value: function addToCart(qty) {
+      carrito.push(this.getCompra(qty));
+    }
+  }]);
+
+  return Menu;
+}(); //Creo un objeto
+
+
+var producto1 = new Menu(1, 'Caseritos', 150);
+var producto2 = new Menu(2, 'Espinaca', 200);
+var producto3 = new Menu(3, 'Tirabuzon', 220);
+var producto4 = new Menu(4, 'Ravioles carne', 270);
+var producto5 = new Menu(4, 'Verdes', 250);
+var producto6 = new Menu(5, 'Canelonis', 300);
+var producto7 = new Menu(6, '4 Quesos', 120);
+var producto8 = new Menu(7, 'Boloñesa', 170);
+var producto9 = new Menu(8, 'Fileto', 110); //Aca guardo el total en una variable(pedidoUnoTotal), que me va a devolver datos de la compra.
+//primeroPedido=producto1.getCompra(12)
+//console.log(primeroPedido)
+
+console.log(carrito);
+producto7.addToCart(3);
+console.log(carrito);
